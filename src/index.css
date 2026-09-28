@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Identidad Cóndor. Oscuro por defecto; claro si el sistema lo pide. */
+:root {
+  color-scheme: dark;
+  --bg: #111110; --surface: #1a1916; --surface2: #24221d; --ink: #f5f1e8; --muted: #a39d8e; --line: #34312a;
+  --gold: #f2b705; --gold-soft: rgba(242, 183, 5, 0.14); --red: #f0485a; --blue: #3fa9f5; --good: #4cc27f; --warn: #f2a33a;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f5f1e8; --surface: #fffdf8; --surface2: #ece6d8; --ink: #141310; --muted: #6b665a; --line: #ddd5c3;
+    --gold: #a67c00; --gold-soft: rgba(242, 183, 5, 0.18); --red: #b40f22; --blue: #1d6fae; --good: #1e7a45; --warn: #a66300;
+  }
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.5; margin: 0; }
+.num { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; text-align: right; }
+
+@layer components {
+  .card { @apply bg-surface border border-line rounded-lg p-4; }
+  .tbl { @apply overflow-x-auto border border-line rounded-lg bg-surface; }
+  .tbl table { @apply w-full border-collapse text-[13px]; }
+  .tbl th { @apply text-left text-[11px] uppercase tracking-wider text-muted font-semibold bg-surface2 px-2.5 py-2 whitespace-nowrap border-b border-line; }
+  .tbl td { @apply px-2.5 py-2 border-b border-line align-middle; }
+  .tbl tr:last-child td { @apply border-b-0; }
+  .inp { @apply bg-bg text-ink border border-line rounded-md px-2 py-1 max-w-full; }
+  .inp:focus-visible, .btn:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .inp-n { @apply inp w-20 text-right font-mono; }
+  .btn { @apply font-semibold text-[13px] bg-ink text-bg rounded-md px-3.5 py-2 cursor-pointer disabled:opacity-50; }
+  .btn-ghost { @apply font-semibold text-[13px] bg-transparent text-ink border border-line rounded-md px-3 py-1.5 cursor-pointer; }
+  .h2 { @apply font-display uppercase text-lg tracking-wide m-0; text-wrap: balance; }
+  .sub { @apply text-muted mt-1 mb-4 max-w-[70ch]; }
+  .pill { @apply inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full border border-current whitespace-nowrap; }
+  .tile { @apply bg-surface border border-line rounded-lg px-4 py-3.5 flex flex-col gap-1; }
+  .tile-k { @apply text-[11px] uppercase tracking-wider text-muted; }
+  .tile-v { @apply font-mono font-bold text-2xl leading-tight; }
+  .bar { @apply h-1.5 bg-surface2 rounded overflow-hidden; }
+  .bar > i { @apply block h-full bg-gold; }
+}
